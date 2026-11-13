@@ -1,0 +1,769 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chandrakanth | Personal Website</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #eaf7ee;
+    color: #183326;
+    overflow-x: hidden;
+}
+
+/* Background Animation */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.25;
+    z-index: -1;
+    animation: float 9s infinite alternate ease-in-out;
+}
+
+body::before {
+    background: #22c55e;
+    top: 10%;
+    left: -100px;
+}
+
+body::after {
+    background: #86efac;
+    bottom: 5%;
+    right: -100px;
+    animation-delay: 2s;
+}
+
+@keyframes float {
+    from { transform: translate(0,0); }
+    to { transform: translate(100px,80px); }
+}
+
+/* Header */
+header {
+    background: rgba(20,83,45,0.96);
+    backdrop-filter: blur(15px);
+    padding: 22px;
+    text-align: center;
+    border-bottom: 1px solid #86b99a;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header h2 {
+    color: white;
+    letter-spacing: 3px;
+    font-size: 23px;
+}
+
+header h2 span {
+    color: #86efac;
+}
+
+nav {
+    margin-top: 18px;
+}
+
+nav button {
+    padding: 11px 24px;
+    margin: 5px;
+    background: transparent;
+    color: white;
+    border: 1px solid #86b99a;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+nav button:hover,
+nav button.selected {
+    background: linear-gradient(90deg,#15803d,#4ade80);
+    border-color: transparent;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px #16a34a66;
+}
+
+/* Sections */
+section {
+    display: none;
+    width: 88%;
+    max-width: 1100px;
+    margin: 45px auto;
+    padding: 40px;
+    background: rgba(255,255,255,0.96);
+    border: 1px solid #c5e5d0;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px #0002;
+}
+
+section.active {
+    display: block;
+    animation: appear 0.7s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Headings */
+h1 {
+    text-align: center;
+    color: #166534;
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #15803d;
+    margin: 28px 0 15px;
+}
+
+p {
+    line-height: 1.8;
+    color: #365344;
+}
+
+/* Home Page */
+.home {
+    text-align: left;
+    padding: 75px 55px;
+}
+
+.home-layout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 45px;
+}
+
+.home-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.home-content h1 {
+    text-align: left;
+}
+
+.home-content p {
+    margin: 20px 0;
+}
+
+.home-photo {
+    flex: 0 0 270px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home h1 {
+    font-size: 42px;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 5px #bbf7d0; }
+    to { text-shadow: 0 0 25px #4ade80; }
+}
+
+.home h2 {
+    font-size: 28px;
+    color: #166534;
+}
+
+.home p {
+    max-width: 650px;
+    margin: 20px 0;
+    font-size: 17px;
+}
+
+.tagline {
+    color: #16a34a;
+    letter-spacing: 2px;
+    margin-top: 15px;
+}
+
+/* Buttons */
+.action-btn {
+    background: linear-gradient(90deg,#15803d,#22c55e);
+    color: white;
+    padding: 13px 25px;
+    border: none;
+    margin: 15px 8px;
+    cursor: pointer;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.action-btn:hover {
+    transform: scale(1.07);
+    box-shadow: 0 5px 20px #4ade8088;
+}
+
+/* Profile Photo */
+.profile-area {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+.profile-photo-container {
+    width: 250px;
+    height: 250px;
+    padding: 9px;
+    position: relative;
+    border: 3px solid #22c55e;
+    border-radius: 50%;
+    background: linear-gradient(145deg,#bbf7d0,#dcfce7);
+    box-shadow: 0 0 28px #16a34a66;
+    transition: 0.3s;
+    overflow: hidden;
+}
+
+.profile-photo-container:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 0 36px #16a34a99;
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #dcfce7;
+}
+
+.photo-placeholder {
+    position: absolute;
+    inset: 9px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border-radius: 50%;
+    color: #166534;
+    background: #f0fdf4;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.photo-placeholder span:first-child {
+    font-size: 42px;
+}
+
+/* Content Cards */
+.content-card {
+    background: #f0fdf4;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 15px 0;
+    border-left: 4px solid #16a34a;
+    transition: 0.3s;
+}
+
+.content-card:hover {
+    transform: translateX(7px);
+    background: #dcfce7;
+}
+
+.content-card p {
+    margin: 5px 0;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+th, td {
+    border: 1px solid #bbdfc7;
+    padding: 14px;
+    text-align: left;
+}
+
+th {
+    background: #15803d;
+    color: white;
+}
+
+td {
+    background: #f0fdf4;
+    color: #365344;
+}
+
+tr:hover td {
+    background: #dcfce7;
+}
+
+/* Lists */
+ul {
+    margin-left: 25px;
+    line-height: 2.3;
+    color: #365344;
+}
+
+li::marker {
+    color: #16a34a;
+}
+
+/* Skills */
+.skill-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.skill-box {
+    background: #dcfce7;
+    color: #166534;
+    padding: 20px;
+    text-align: center;
+    border-radius: 12px;
+    border: 1px solid #bbdfc7;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.skill-box:hover {
+    transform: translateY(-8px);
+    background: linear-gradient(135deg,#bbf7d0,#86efac);
+}
+
+/* Footer */
+footer {
+    background: #14532d;
+    color: white;
+    text-align: center;
+    padding: 22px;
+    margin-top: 50px;
+    border-top: 1px solid #2f6b46;
+}
+
+footer p {
+    color: #dcfce7;
+}
+
+/* Print Resume */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+
+    body::before,
+    body::after,
+    header,
+    footer,
+    .action-btn,
+    #home,
+    #biodata {
+        display: none !important;
+    }
+
+    #resume {
+        display: block !important;
+        width: 100%;
+        margin: 0;
+        padding: 15px;
+        background: white;
+        color: black;
+        box-shadow: none;
+        border: none;
+    }
+
+    #resume h1,
+    #resume h2,
+    #resume p,
+    #resume li,
+    #resume td {
+        color: black;
+    }
+
+    #resume th {
+        background: #ddd !important;
+        color: black;
+    }
+
+    #resume td {
+        background: white;
+    }
+}
+
+/* Mobile Responsive */
+@media(max-width:600px) {
+    section {
+        width: 95%;
+        padding: 20px;
+        margin: 25px auto;
+    }
+
+    header h2 {
+        font-size: 18px;
+    }
+
+    nav button {
+        padding: 9px 13px;
+        font-size: 12px;
+    }
+
+    .home h1 {
+        font-size: 29px;
+    }
+
+    .home {
+        padding: 40px 20px;
+    }
+
+    .home-layout {
+        flex-direction: column-reverse;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .home-content {
+        width: 100%;
+    }
+
+    .home-content .home h1,
+    .home h1 {
+        text-align: center;
+    }
+
+    .home-content p {
+        margin: 20px auto;
+    }
+
+    .home-photo {
+        flex: 0 0 auto;
+    }
+
+    .profile-photo-container {
+        width: 205px;
+        height: 205px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h2>MY <span>PERSONAL WEBSITE</span></h2>
+
+    <nav>
+        <button class="selected" onclick="showPage('home',this)">Home</button>
+        <button onclick="showPage('resume',this)">Resume</button>
+        <button onclick="showPage('biodata',this)">Bio-data</button>
+    </nav>
+</header>
+
+<section id="home" class="active home">
+
+    <div class="home-layout">
+
+        <div class="home-content">
+
+            <h1>WELCOME TO MY WEBSITE</h1>
+
+            <div class="tagline">
+                STUDENT | TECHNOLOGY ENTHUSIAST | LEARNER
+            </div>
+
+            <h2>Hello! I am Chandrakanth</h2>
+
+            <p>
+                I am a student interested in technology,
+                programming and learning new skills.
+                This website contains my Resume and Bio-data.
+            </p>
+
+            <button class="action-btn" onclick="showPage('resume')">
+                View Resume →
+            </button>
+
+            <button class="action-btn" onclick="showPage('biodata')">
+                View Bio-data →
+            </button>
+
+        </div>
+
+        <div class="home-photo">
+
+            <div class="profile-area">
+
+                <div class="profile-photo-container">
+
+                    <img
+                        src="whatsapp.JPEG"
+                        alt="Profile Photo"
+                        class="profile-img"
+                        onload="this.nextElementSibling.style.display='none'"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+                    >
+
+                    <div class="photo-placeholder">
+                        <span>📷</span>
+                        <span>ADD PROFILE PHOTO</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="resume">
+
+    <h1>MY RESUME</h1>
+
+    <h2>Personal Profile</h2>
+
+    <div class="content-card">
+        <p><b>Name:</b> Chandrakanth</p>
+        <p><b>Email:</b> chandhangowda632@gmail.com</p>
+        <p><b>Phone:</b> 9108237424</p>
+        <p><b>Address:</b>Belthangady, Karnataka, India</p>
+    </div>
+
+    <h2>Career Objective</h2>
+
+    <div class="content-card">
+        <p>
+            To obtain a challenging position where I can
+            improve my knowledge and skills and contribute
+            to the development of an organization.
+        </p>
+    </div>
+
+    <h2>Educational Qualification</h2>
+
+    <table>
+        <tr>
+            <th>Course</th>
+            <th>Institution</th>
+            <th>Year</th>
+        </tr>
+
+        <tr>
+            <td>BE</td>
+            <td>Vivekananda College of Engineering and Technology</td>
+            <td>2024-Present</td>
+        </tr>
+
+        <tr>
+            <td>PUC</td>
+            <td>Vani PU College</td>
+            <td>2022-2024</td>
+        </tr>
+
+        <tr>
+            <td>SSLC</td>
+            <td>Mariambika english medium school</td>
+            <td>2022</td>
+        </tr>
+    </table>
+
+    <h2>Technical Skills</h2>
+
+    <div class="skill-container">
+        <div class="skill-box">HTML</div>
+        <div class="skill-box">CSS</div>
+        <div class="skill-box">JavaScript</div>
+        <div class="skill-box">C Programming</div>
+        <div class="skill-box">Python</div>
+    </div>
+
+    <h2>Projects</h2>
+
+    <div class="content-card">
+        <p>Student Local Service Provider Website</p>
+    </div>
+
+    <h2>Strengths</h2>
+
+    <div class="skill-container">
+        <div class="skill-box">Hard Working</div>
+        <div class="skill-box">Team Work</div>
+        <div class="skill-box">Time Management</div>
+        <div class="skill-box">Quick Learner</div>
+    </div>
+
+    <h2>Declaration</h2>
+
+    <div class="content-card">
+        <p>
+            I hereby declare that the above information
+            is true to the best of my knowledge.
+        </p>
+    </div>
+
+    <button class="action-btn" onclick="window.print()">
+        🖨 Print Resume
+    </button>
+
+</section>
+
+<section id="biodata">
+
+    <h1>MY BIO-DATA</h1>
+
+    <h2>Personal Information</h2>
+
+    <table>
+        <tr>
+            <th>Full Name</th>
+            <td>Chandrakanth</td>
+        </tr>
+
+        <tr>
+            <th>Date of Birth</th>
+            <td>03/02/2006</td>
+        </tr>
+
+        <tr>
+            <th>Gender</th>
+            <td>Male</td>
+        </tr>
+
+        <tr>
+            <th>Nationality</th>
+            <td>Indian</td>
+        </tr>
+
+        <tr>
+            <th>Languages Known</th>
+            <td>Kannada, English, Hindi</td>
+        </tr>
+
+        <tr>
+            <th>Address</th>
+            <td>Karnataka, India</td>
+        </tr>
+
+        <tr>
+            <th>Hobbies</th>
+            <td>Reading, Travelling, Sports</td>
+        </tr>
+    </table>
+
+    <h2>About Me</h2>
+
+    <div class="content-card">
+        <p>
+            I am a dedicated and enthusiastic student.
+            I enjoy learning new technologies and
+            improving my technical knowledge.
+        </p>
+    </div>
+
+    <h2>Personal Strengths</h2>
+
+    <div class="skill-container">
+        <div class="skill-box">Positive Attitude</div>
+        <div class="skill-box">Self Motivation</div>
+        <div class="skill-box">Adaptability</div>
+        <div class="skill-box">Responsibility</div>
+    </div>
+
+    <h2>Contact Details</h2>
+
+    <div class="content-card">
+        <p>Email: chandhangowda632@gmail.com</p>
+        <p>Phone: 9108237424</p>
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 My Personal Website | Chandrakanth</p>
+</footer>
+
+<script>
+
+function showPage(pageId, button) {
+
+    let pages = document.querySelectorAll("section");
+
+    pages.forEach(function(page) {
+        page.classList.remove("active");
+    });
+
+    document.getElementById(pageId).classList.add("active");
+
+    document.querySelectorAll("nav button").forEach(function(btn) {
+        btn.classList.remove("selected");
+    });
+
+    if(button) {
+        button.classList.add("selected");
+    } else {
+        document.querySelectorAll("nav button").forEach(function(btn) {
+            if(btn.textContent.trim() ===
+                pageId.charAt(0).toUpperCase() + pageId.slice(1)) {
+                btn.classList.add("selected");
+            }
+        });
+    }
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+window.onload = function() {
+    alert("Welcome to Chandrakanth's Personal Website!");
+};
+
+</script>
+
+</body>
+</html>
